@@ -1,0 +1,95 @@
+(py3Env) C:\Users\Bernard\Desktop\python_stack\myEnvironments>pip install Django==1.11.9
+Collecting Django==1.11.9
+  Downloading https://files.pythonhosted.org/packages/c8/a6/291039f0ce4b9818e0399359866337e6dfe9c0e23d8d94f00e657edbfcd8/Django-1.11.9-py2.py3-none-any.whl (6.9MB)
+    100% |¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦¦| 7.0MB 2.9MB/s
+Collecting pytz (from Django==1.11.9)
+  Using cached https://files.pythonhosted.org/packages/30/4e/27c34b62430286c6d59177a0842ed90dc789ce5d1ed740887653b898779a/pytz-2018.5-py2.py3-none-any.whl
+Installing collected packages: pytz, Django
+Successfully installed Django-1.11.9 pytz-2018.5
+
+(py3Env) C:\Users\Bernard\Desktop\python_stack\myEnvironments>pip list
+Package    Version
+---------- -------
+Django     1.11.9
+pip        18.0
+pytz       2018.5
+setuptools 40.4.3
+wheel      0.32.0
+
+(py3Env) C:\Users\Bernard\Desktop\python_stack\myEnvironments>
+
+(py3Env) C:\Users\Bernard\Desktop\python_stack\myEnvironments>deactivate
+
+//pip3 list outputs the list of all installed packages, whereas the same action in the virtual environment only output installed packages local to the virtual environment//
+
+C:\Users\Bernard\Desktop\python_stack\myEnvironments>pip3 list
+Package            Version
+------------------ -------
+backcall           0.1.0
+bleach             2.1.4
+colorama           0.3.9
+cycler             0.10.0
+decorator          4.3.0
+entrypoints        0.2.3
+html5lib           1.0.1
+ipykernel          4.8.2
+ipython            6.5.0
+ipython-genutils   0.2.0
+ipywidgets         7.4.0
+jedi               0.12.1
+Jinja2             2.10
+
+
+
+C:\Users\Bernard\Desktop\python_stack\myEnvironments>py3Env\Scripts\activate
+
+(py3Env) C:\Users\Bernard\Desktop\python_stack\myEnvironments>
+
+
+(py3Env) C:\Users\Bernard\Desktop\python_stack\myEnvironments>pip install Django==1.11.9
+Requirement already satisfied: Django==1.11.9 in c:\users\bernard\desktop\python_stack\myenvironments\py3env\lib\site-packages (1.11.9)
+Requirement already satisfied: pytz in c:\users\bernard\desktop\python_stack\myenvironments\py3env\lib\site-packages (from Django==1.11.9) (2018.5)
+
+(py3Env) C:\Users\Bernard\Desktop\python_stack\myEnvironments>
+
+
+//output packages installed using pip, into a requirements format//
+//requirements files contain the list of items to be installed using pip//
+//pip list command outputs the list of installed packages//
+
+(py3Env) C:\Users\Bernard\Desktop\python_stack\myEnvironments>pip freeze
+Django==1.11.9
+pytz==2018.5
+
+(py3Env) C:\Users\Bernard\Desktop\python_stack\myEnvironments>cd ..\..
+
+(py3Env) C:\Users\Bernard\Desktop>pip freeze > requirements.txt
+
+(py3Env) C:\Users\Bernard\Desktop>type requirements.txt
+Django==1.11.9
+pytz==2018.5
+
+(py3Env) C:\Users\Bernard\Desktop>
+
+
+(py3Env) C:\Users\Bernard\Desktop>pip uninstall Django
+Uninstalling Django-1.11.9:
+  Would remove:
+    c:\users\bernard\desktop\python_stack\myenvironments\py3env\lib\site-packages\django-1.11.9.dist-info\*
+    c:\users\bernard\desktop\python_stack\myenvironments\py3env\lib\site-packages\django\*
+    c:\users\bernard\desktop\python_stack\myenvironments\py3env\scripts\django-admin.exe
+    c:\users\bernard\desktop\python_stack\myenvironments\py3env\scripts\django-admin.py
+Proceed (y/n)? y
+  Successfully uninstalled Django-1.11.9
+
+(py3Env) C:\Users\Bernard\Desktop>pip show Django
+
+
+//searches the Python Package Index (PyPI) for packages using the pip search command//
+
+(py3Env) C:\Users\Bernard\Desktop>pip search Flask
+Flask-OrientDB (0.1)        - A Flask extension for using OrientDB with Flask
+Flask-Pure (0.5)            - Flask-Pure - a Flask extension for Pure.css
+Flask-SimpleMDE (0.3.0)     - Flask-SimpleMDE - a Flask extension for SimpleMDE
+sockjs-flask (0.3)          - SockJs for Flask
+Fifty-Flask (1.4.0)         - Flask enhancements.
