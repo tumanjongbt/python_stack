@@ -8,8 +8,8 @@ class Bike:
         self.miles = 0 # set initial miles to 0 whenever a new instance is created
 
     # display price, maximum speed and total miles for a single instance
-    def displayInfo(self):
-        print(f"Purchase price is: {self.price}. Maximum speed is {self.max_speed}.  Total miles is {self.miles}.")
+    def displayInfo(self, miles):
+        print(f"Purchase price is: {self.price}. Maximum speed is {self.max_speed}.  Total miles is" , miles)
         return self
     # Riding method of the calling instance
     def ride(self, miles):
@@ -25,7 +25,7 @@ class Bike:
 bike1 = Bike(200,"25mph")
 bike2 = Bike(300,"30mph")
 bike3 = Bike(400,"40mph")
-bike1.ride(3).reverse(1).displayInfo()
-bike2.ride(2).reverse(2).displayInfo()
-bike3.reverse(3).displayInfo()
+bike1.ride(3).reverse(1).displayInfo(10)
+bike2.ride(2).reverse(2).displayInfo(5)
+bike3.reverse(3).displayInfo(4)
 
