@@ -14,11 +14,13 @@ class Bike:
         return self
     # Riding method of the calling instance
     def ride(self, miles):
+        self.miles += miles
         print(f"Riding: ", miles, "miles")
         return self
 
     # Reverse method of the calling instance
     def reverse(self, miles):
+        self.miles -= miles
         print(f"Reversing: ", miles, "miles")
         return self
         
