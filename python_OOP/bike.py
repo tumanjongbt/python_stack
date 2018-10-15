@@ -9,7 +9,8 @@ class Bike:
 
     # display price, maximum speed and total miles for a single instance
     def displayInfo(self, miles):
-        print(f"Purchase price is: {self.price}. Maximum speed is {self.max_speed}.  Total miles is" , miles)
+        self.miles += miles
+        print(f"Purchase price is: {self.price}. Maximum speed is {self.max_speed}.  Total miles is {self.miles}.")
         return self
     # Riding method of the calling instance
     def ride(self, miles):
