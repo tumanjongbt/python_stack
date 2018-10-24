@@ -2,3 +2,4 @@ py3Env/
 .vscode
 *.pyc
 test.py
+hello.py
