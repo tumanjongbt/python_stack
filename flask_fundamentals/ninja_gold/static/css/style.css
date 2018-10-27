@@ -1,0 +1,58 @@
+* {
+	padding: 5px;
+	margin: 5px;
+}
+h1 {
+    text-align: center;
+}
+
+#wrapper {
+	width: 1070px;
+	margin: 0px auto;
+	padding: 5px;
+	font-family: Helvetica, Verdana;
+	font-size: 11pt;
+    color: black;
+    background-color: goldenrod;
+}
+.gold {
+    display: inline-block;
+    margin-left: 5px;
+}
+.total {
+    display: inline-block;
+    border: 1px solid black;
+    width: 100px;
+    text-align: center;
+
+}
+
+#btn-group {
+    padding: 5px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.locations {
+	padding: 5px;
+	border: 1px solid black;
+	border-radius: 5px;
+    text-align: center;
+    width: 200px;
+    margin: 5px;
+}
+
+#activities_container {
+	margin-left: 5px;
+}
+
+.activities {
+    margin-top: 5px;
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid black;
+}
+
+.btn-group {
+    margin: 5px;
+}
