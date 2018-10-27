@@ -12,7 +12,16 @@
 <body>
     <div class="container">
         <h2>Dojo Survey</h2>
-        <form action='/result' method='post'>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action='/survey' method='post'>
             <div class="form-group">
                 <label for="name">Your Name:</label>
                 <input type='text' class="form-control" placeholder="Enter Full Name" name='name'>
