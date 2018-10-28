@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Registration Form</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Registration Form</h2>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class=flashes>
+                    {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <form action='/register' method='post'>
+            <div class="form-group">
+                <label for="name">Email:</label>
+                <input type='text' class="form-control" placeholder="Enter email address" name='email'>
+            </div>
+            <div class="form-group">
+                <label for="f_name">First Name:</label>
+                <input type='text' class="form-control" placeholder="Enter First Name" name='f_name'>
+            </div>
+            <div class="form-group">
+                <label for="l_name">Last Name:</label>
+                <input type='text' class="form-control" placeholder="Enter Last Name" name='l_name'>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type='password' class="form-control" placeholder="Enter Password" name='password'>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password:</label>
+                <input type='password' class="form-control" placeholder="Confirm Password" name='confirm_password'>
+            </div>
+            <input type='submit' class="btn btn-default" value='Register User'>
+        </form>
+    </div>
+</body>
+</html>
