@@ -4,7 +4,7 @@ import re
 from flask_bcrypt import Bcrypt  
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
-# NAME_REGEX = re.compile(r'^[A-Z][a-zA-Z]*')
+NAME_REGEX = re.compile(r'^[A-Z][a-zA-Z]*')
 
 app = Flask(__name__)
 
@@ -20,13 +20,13 @@ def register():
 
     if len(request.form['first_name']) < 1:
         flash("First Name cannot be blank!", 'first_name')
-    # elif not NAME_REGEX.match(request.form['first_name']):
-    #     flash("First Name cannot contain numbers!", 'first_name')
+    elif not NAME_REGEX.match(request.form['first_name']):
+        flash("First Name cannot contain numbers!", 'first_name')
 
     if len(request.form['last_name']) < 1:
         flash("Last Name cannot be blank!", 'last_name')
-    # elif not NAME_REGEX.match(request.form['last_name']):
-    #     flash("Last Name cannot contain numbers!", 'last_name')
+    elif not NAME_REGEX.match(request.form['last_name']):
+        flash("Last Name cannot contain numbers!", 'last_name')
 
     if len(request.form['email']) < 1:
         flash("Email cannot be blank!", 'email')
@@ -37,6 +37,12 @@ def register():
         flash("Password cannot be blank!", 'password')
     elif len(request.form['password']) < 8:
         flash("Password must be more than 8 characters", 'password')
+    
+    if len(request.form['confirm_password']) < 1:
+        flash("Confirm Password cannot be blank!", 'confirm_password')
+    elif request.form['confirm_password'] != request.form['password']:
+        flash("Passwords do not match. Retry", 'confirm_password')
+
     if '_flashes' in session.keys():
         return redirect("/")
     else:

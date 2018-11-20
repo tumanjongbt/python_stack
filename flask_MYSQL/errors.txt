@@ -1,0 +1,38 @@
+$ python server.py
+Traceback (most recent call last):
+  File "server.py", line 3, in <module>
+    from mysqlconnection import connectToMySQL
+ImportError: cannot import name 'connectToMySQL' from 'mysqlconnection' (C:\Users\Bernard\Desktop\python_stack\flask_MYSQL\db_connection\mysqlconnection.py)
+(py3Env)
+
+Traceback (most recent call last):
+  File "server.py", line 8, in <module>
+    mysql = connectToMySQL('mydatabase')
+  File "C:\Users\Bernard\Desktop\python_stack\flask_MYSQL\db_connection\mysqlconnection.py", line 46, in connectToMySQL
+    return MySQLConnection(db)
+  File "C:\Users\Bernard\Desktop\python_stack\flask_MYSQL\db_connection\mysqlconnection.py", line 12, in __init__
+    autocommit = True)
+  File "C:\Users\Bernard\Desktop\python_stack\myEnvironments\py3Env\lib\site-packages\pymysql\__init__.py", line 94, in Connect
+    return Connection(*args, **kwargs)
+  File "C:\Users\Bernard\Desktop\python_stack\myEnvironments\py3Env\lib\site-packages\pymysql\connections.py", line 327, in __init__
+    self.connect()
+  File "C:\Users\Bernard\Desktop\python_stack\myEnvironments\py3Env\lib\site-packages\pymysql\connections.py", line 598, in connect
+    self._request_authentication()
+  File "C:\Users\Bernard\Desktop\python_stack\myEnvironments\py3Env\lib\site-packages\pymysql\connections.py", line 862, in _request_authentication
+    auth_packet = self._process_auth(plugin_name, auth_packet)
+  File "C:\Users\Bernard\Desktop\python_stack\myEnvironments\py3Env\lib\site-packages\pymysql\connections.py", line 933, in _process_auth
+    pkt = self._read_packet()
+  File "C:\Users\Bernard\Desktop\python_stack\myEnvironments\py3Env\lib\site-packages\pymysql\connections.py", line 683, in _read_packet
+    packet.check_error()
+  File "C:\Users\Bernard\Desktop\python_stack\myEnvironments\py3Env\lib\site-packages\pymysql\protocol.py", line 220, in check_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\Bernard\Desktop\python_stack\myEnvironments\py3Env\lib\site-packages\pymysql\err.py", line 109, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+(py3Env)
+
+Something went wrong name 'quer' is not defined
+all the users False
+ * Debugger is active!
+ * Debugger PIN: 949-965-762
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
