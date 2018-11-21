@@ -5,7 +5,7 @@ app.secret_key = 'ThisIsSecret'
 
 @app.route('/')
 def index():
-    return render_template("index.html")
+    return render_template("index2.html")
 
 @app.route('/users', methods=['POST'])
 def create_user():
