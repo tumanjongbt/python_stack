@@ -1,0 +1,22 @@
+/* .container{
+    display: inline-block;
+    padding: 10px;
+} */
+
+.heading, p{
+    border: 2px solid black;
+    text-align: center;
+}
+
+.heading{
+    font-size: 15px;
+    padding: 5px;
+    width: 200px;
+}
+
+p{
+    font-size: 40px;
+    width: 430px;
+    padding-left: 90px;
+    padding-right: 90px;
+}
