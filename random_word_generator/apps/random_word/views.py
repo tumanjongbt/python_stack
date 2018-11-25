@@ -20,8 +20,9 @@ def generate(request):
 
 def reset(request):
     if request.method == 'POST':
-        request.session['counter'] = 0
-        request.session['random'] = ""
+        # request.session['counter'] = 0
+        # request.session['random'] = ""
+        request.session.clear()
     return redirect("/")
 
 
