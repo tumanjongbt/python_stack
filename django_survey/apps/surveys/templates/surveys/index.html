@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'surveys/css/main.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Django Survey Form</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Dojo Survey</h2>
+
+        <form action='/survey/' method='post'>
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type='text' class="form-control form-control-lg rounded-0" placeholder="Enter Full Name" name='name'>
+            </div>
+            <div  class="form-group">
+                <label for="location">Dojo Locations:</label>
+                <select class="form-control form-control-lg rounded-0" name="location">
+                    <option value="San Jose">San Jose</option>
+                    <option value="Seatle">Seatle</option>
+                    <option value="LA">LA</option>
+                    <option value="Dallas">Dallas</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="language">Favorite Language:</label>
+                <select class="form-control form-control-lg rounded-0" name="language">
+                    <option value="Python">Python</option>
+                    <option value="MEAN">MEAN</option>
+                    <option value="JAVA">JAVA</option>
+                    <option value="Ruby">Ruby</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Comment(optional):</label>
+                <textarea class="form-control form-control-lg rounded-0" name="message" rows="5" cols="30"></textarea>
+            </div>
+            <input type='submit' class="btn btn-success btn-lg float-right" value='Submit'>
+        </form>
+    </div>
+</body>
+</html>

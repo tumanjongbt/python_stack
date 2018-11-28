@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'surveys/css/main.css' %}">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Dojo Survey Results</title>
+</head>
+<body>
+    <div class="container">
+        <p class="header">Thanks for submitting this form!  You have submitted this form {{counter}} times now.</p>
+    </div>
+    <div class="container">
+        <h2><u>Submitted Info</u></h2>
+        <div class="col-sm-5">
+            <p>Name: </p>
+            <p>Dojo Location:  </p>
+            <p>Favorite Language: </p>
+            <p>Comment: </p>
+        </div>
+        <div class="col-sm-7">
+            <p>{{name}} </p>
+            <p>{{location}} </p>
+            <p>{{language}} </p>
+            <p>{{message}} </p>
+        </div>        
+        <div class="form-group"> 
+            <form action='/back/' method='post'>
+                {% csrf_token %}
+                <input type='submit' class="btn btn-warning btn-lg float-right" value='Go Back'>                              
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>
+
+
+
+
