@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'session_words/css/main.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <title>Django Survey Form</title>
+</head>
+<body>
+    <div class="container">
+        <form action='/session_words/create/' method='post'>
+            {% csrf_token %}
+            <div class="col-sm-6">
+                <label for="word">Add a new word:</label>
+                <input type="text" name="word"><br>
+                <label for="color">Choose color:</label>
+                <input type="radio" name="color" value="Red" checked> Red
+                <input type="radio" name="color" value="Green"> Green
+                <input type="radio" name="color" value="Blue" > Blue<br>
+                <input type="checkbox" name="big_font" value="1"> show in BIG fonts<br>  
+                <input type='submit' class="btn btn-success btn-lg float-right" value='Add to Session'>      
+            </div>
+        </form>
+        <div class="vl"></div>
+        <div class="col-sm-6">
+            <a href="session_words/clear" class="button">Clear Session</a>
+            {% for word in request.session.words %}
+			<p class="{{word.color}} {{word.font_size}}">{{word.new_word}} -added on</p>
+		    {% endfor %}
+        </div> 
+    </div>
+</body>
+</html>
