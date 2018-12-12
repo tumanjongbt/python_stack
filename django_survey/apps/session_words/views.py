@@ -3,25 +3,31 @@ from time import localtime, strftime
 
 # Create your views here.
 
-def home(req):
+def new(req):
     return render(req, 'session_words/index.html')
 
 def create(req):
      
     time_created = strftime('%#H:%M:%S%p, %B, %#d %Y', localtime())
 
-    temp_list = req.session['words']
+    temp_list = []
+    req.session['words'] = []
 
     if 'big_font' in req.POST:
-        showbig = 1
+        showbig = 10
+        temp_list.append({"time": time_created, "new_word": req.POST['word'], "color": req.POST['color'], "font_size": showbig })
+
     else:
-        showbig = 0
-    temp_list.append({"time": time_created, "new_word": req.POST['word'], "color": req.POST['color'], "font_size": showbig })
+        showbig = 5
+        temp_list.append({"time": time_created, "new_word": req.POST['word'], "color": req.POST['color'], "font_size": showbig })
+
 
     req.session['words'] = temp_list
 
-    return redirect('/home')
+    print(req.session['words'])
 
+    # return redirect('/session_words/index')
+    return redirect('/session_words/new')
 def clear(req):
     req.session.clear()
-    return redirect('/home')
+    return redirect('/session_words/new')

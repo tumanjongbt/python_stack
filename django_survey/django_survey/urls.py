@@ -17,5 +17,5 @@ from django.conf.urls import url, include
 
 urlpatterns = [
     url(r'^session_words/', include('apps.session_words.urls', namespace="session_words")),
-    url(r'^', include('apps.surveys.urls', namespace="surveys")),
+    url(r'^surveys/', include('apps.surveys.urls', namespace="surveys")),
 ]

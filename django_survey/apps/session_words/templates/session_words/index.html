@@ -28,9 +28,9 @@
         </form>
         <div class="vl"></div>
         <div class="col-sm-6">
-            <a href="session_words/clear" class="button">Clear Session</a>
+            <a href="/session_words/clear" class="button">Clear Session</a>
             {% for word in request.session.words %}
-			<p class="{{word.color}} {{word.font_size}}">{{word.new_word}} -added on</p>
+			    <p> <font color ="{{word.color}}" size=" {{word.font_size}}"> {{word.new_word}} </font> - added on {{word.time}}</p>
 		    {% endfor %}
         </div> 
     </div>

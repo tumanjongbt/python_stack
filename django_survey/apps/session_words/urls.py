@@ -3,9 +3,7 @@ from .import views
 
 
 urlpatterns = [
-    url(r'^home/$', views.home, name="home"),
+    url(r'^new/$', views.new, name="new"),
     url(r'^create/$', views.create, name="create"),
     url(r'^clear/$', views.clear, name="clear"),
-
-
 ]
