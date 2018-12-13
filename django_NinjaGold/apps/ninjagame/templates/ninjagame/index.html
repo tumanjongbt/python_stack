@@ -58,7 +58,7 @@
             <div id="activities_container">
                 <h3>Activities:</h3>
                 <div class=activities>
-                    {% for activity in request.session.gold %}
+                    {% for activity in request.session.activities %}
                     <p style="color:{{ session.css_class }}">{{ activity }}</p>
                     {% endfor %}
                 </div>
