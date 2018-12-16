@@ -1,0 +1,73 @@
+
+$ python manage.py shell
+Python 3.7.0 (v3.7.0:1bf9cc5093, Jun 27 2018, 04:06:47) [MSC v.1914 32 bit (Intel)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.1.1 -- An enhanced Interactive Python. Type '?' for help.
+
+In [4]: from apps.user_login.models import User
+
+In [34]: User.objects.create(first_name="Paul", last_name="Mason", email_address="pmason@mail.com", age=26)
+Out[34]: <User: pmason@mail.com>
+
+In [35]: User.objects.create(first_name="Bravo", last_name="Atkins", email_address="batkins@mail.com", age=28)
+Out[35]: <User: batkins@mail.com>
+
+In [36]: User.objects.create(first_name="Susan", last_name="Peters", email_address="speters@mail.com", age=35)
+Out[36]: <User: speters@mail.com>
+
+In [37]: User.objects.create(first_name="Li", last_name="Ann", email_address="lann@mail.com", age=38)
+Out[37]: <User: lann@mail.com>
+
+In [39]: admin = User.objects.filter(age__gt=30).exclude(first_name__contains="s")
+
+In [40]: print(admin)
+<QuerySet [<User: jsmith@mail.com>, <User: lann@mail.com>]>
+
+In [42]: admin.order_by("age")
+Out[42]: <QuerySet [<User: jsmith@mail.com>, <User: lann@mail.com>]>
+
+In [43]: admin.all()
+Out[43]: <QuerySet [<User: jsmith@mail.com>, <User: lann@mail.com>]>
+
+In [44]: admin.all().values()
+Out[44]: <QuerySet [{'id': 1, 'first_name': 'John', 'last_name': 'Smith', 'email_address': 'jsmith@mail.com', 'age': 31, 'created_at': datetime.datetime(2018, 12, 16, 17, 50, 41, 204565, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 12, 16, 17, 50, 41, 204565, tzinfo=<UTC>)}, {'id': 9, 'first_name': 'Li', 'last_name': 'Ann', 'email_address': 'lann@mail.com', 'age': 38, 'created_at': datetime.datetime(2018, 12, 16, 18, 56, 9, 524911, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 12, 16, 18, 56, 9, 524911, tzinfo=<UTC>)}]>
+
+In [49]: user = User.objects.get(id=6)
+
+In [50]: user.last_name = "Carter"
+
+In [51]: user.save()
+
+In [58]: User.objects.all()
+Out[58]: <QuerySet [<User: jsmith@mail.com>, <User: pmason@mail.com>, <User: batkins@mail.com>, <User: speters@mail.com>, <User: lann@mail.com>]>
+
+In [59]: User.objects.last()
+Out[59]: <User: lann@mail.com>
+
+In [60]: User.objects.create(first_name="Derek", last_name="Burns", email_address="dburns@mail.com", age=20)
+Out[60]: <User: dburns@mail.com>
+
+In [61]: User.objects.first()
+Out[61]: <User: jsmith@mail.com>
+
+In [62]: User.objects.order_by("-first_name")
+Out[62]: <QuerySet [<User: speters@mail.com>, <User: pmason@mail.com>, <User: lann@mail.com>, <User: jsmith@mail.com>, <User: dburns@mail.com>, <User: batkins@mail.com>]>
+
+In [73]: userupdate.values()
+Out[73]: <QuerySet [{'id': 7, 'first_name': 'Bravo', 'last_name': 'Atkins', 'email_address': 'batkins@mail.com', 'age': 28, 'created_at': datetime.datetime(2018, 12, 16, 18, 54, 40, 581013, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 12, 16, 18, 54, 40, 581013, tzinfo=<UTC>)}]>
+
+In [78]: userupdate = User.objects.get(id=7)
+
+In [79]: userupdate.first_name = "Sean"
+
+In [80]: userupdate.save()
+
+In [82]: userupdate = User.objects.filter(id=7)
+
+In [83]: userupdate.values()
+Out[83]: <QuerySet [{'id': 7, 'first_name': 'Sean', 'last_name': 'Atkins', 'email_address': 'batkins@mail.com', 'age': 28, 'created_at': datetime.datetime(2018, 12, 16, 18, 54, 40, 581013, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 12, 16, 19, 40, 15, 311137, tzinfo=<UTC>)}]>
+
+In [84]: User.objects.get(id=8).delete()
+Out[84]: (1, {'user_login.User': 1})
+
+In [85]:
