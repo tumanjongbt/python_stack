@@ -1,0 +1,170 @@
+In [4]: from apps.dojo_ninjas.models import Dojo
+
+In [5]: from apps.dojo_ninjas.models import Ninja
+
+In [6]: Dojo.objects.create(name="CodingDojo Silicon Valley", city="Mountain View", state="CA")
+Out[6]: <Dojo object: CodingDojo Silicon Valley Mountain View CA >
+
+In [7]: Dojo.objects.create(name="CodingDojo Seattle", city="Seattle", state="WA")
+Out[7]: <Dojo object: CodingDojo Seattle Seattle WA >
+
+In [8]: Dojo.objects.create(name="CodingDojo New York", city="New York", state="NY")
+Out[8]: <Dojo object: CodingDojo New York New York NY >
+
+In [9]: Ninja.objects.create(first_name="John", last_name="Doe", dojo=Dojo.objects.get(id=1)
+   ...: )
+Out[9]: <Ninja object: John Doe >
+
+In [10]: Ninja.objects.create(first_name="Harry", last_name="Baker", dojo=Dojo.objects.get(id=1)
+    ...: )
+Out[10]: <Ninja object: Harry Baker >
+
+In [11]: Ninja.objects.create(first_name="Stephanie", last_name="Carter", dojo=Dojo.objects.get(id=1)
+    ...: )
+Out[11]: <Ninja object: Stephanie Carter >
+
+In [12]: Ninja.objects.create(first_name="Paul", last_name="Hook", dojo=Dojo.objects.get(id=2)
+    ...: )
+Out[12]: <Ninja object: Paul Hook >
+
+In [13]: Ninja.objects.create(first_name="Jackie", last_name="Davis", dojo=Dojo.objects.get(id=2)
+    ...: )
+Out[13]: <Ninja object: Jackie Davis >
+
+In [14]: Ninja.objects.create(first_name="Hilary", last_name="Ireland", dojo=Dojo.objects.get(id=2)
+    ...: )
+Out[14]: <Ninja object: Hilary Ireland >
+
+In [15]: Ninja.objects.create(first_name="Samuel", last_name="Best", dojo=Dojo.objects.get(id=3)
+    ...: )
+Out[15]: <Ninja object: Samuel Best >
+
+In [16]: Ninja.objects.create(first_name="Carol", last_name="Lately", dojo=Dojo.objects.get(id=3))
+Out[16]: <Ninja object: Carol Lately >
+
+In [17]: Ninja.objects.create(first_name="Jimmy", last_name="Butler", dojo=Dojo.objects.get(id=3))
+Out[17]: <Ninja object: Jimmy Butler >
+
+In [18]: Ninja.objects.filter(dojo=Dojo.objects.get(id=1))
+Out[18]: <QuerySet [<Ninja object: John Doe >, <Ninja object: Harry Baker >, <Ninja object: Stephanie Carter >]>
+
+In [19]: Ninja.objects.all()
+Out[19]: <QuerySet [<Ninja object: John Doe >, <Ninja object: Harry Baker >, <Ninja object: Stephanie Carter >, <Ninja object: Paul Hook >, <Ninja object: Jackie Davis >, <Ninja object: Hilary Ireland >, <Ninja object: Samuel Best >, <Ninja object: Carol Lately >, <Ninja object: Jimmy Butler >]>
+
+In [20]: Dojo.objects.first()
+Out[20]: <Dojo object: CodingDojo Silicon Valley Mountain View CA >
+
+In [21]: Dojo.objects.first().Ninja.objects.all()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-21-8b4b0276aea6> in <module>
+----> 1 Dojo.objects.first().Ninja.objects.all()
+
+AttributeError: 'Dojo' object has no attribute 'Ninja'
+
+In [22]: Dojo.objects.first().dojo
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-22-249655e1e389> in <module>
+----> 1 Dojo.objects.first().dojo
+
+AttributeError: 'Dojo' object has no attribute 'dojo'
+
+In [23]: Dojo.objects.first(dojo)
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-23-da2f3433efee> in <module>
+----> 1 Dojo.objects.first(dojo)
+
+NameError: name 'dojo' is not defined
+
+In [24]: Dojo.objects.first().name
+Out[24]: 'CodingDojo Silicon Valley'
+
+In [25]: Dojo.objects.first().city
+Out[25]: 'Mountain View'
+
+In [26]: Dojo.objects.first().state
+Out[26]: 'CA'
+
+In [27]: Dojo.objects.first().Ninja.all()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-27-21d746592297> in <module>
+----> 1 Dojo.objects.first().Ninja.all()
+
+AttributeError: 'Dojo' object has no attribute 'Ninja'
+
+In [28]: Dojo.objects.first().ninjas.all()
+Out[28]: <QuerySet [<Ninja object: John Doe >, <Ninja object: Harry Baker >, <Ninja object: Stephanie Carter >]>
+
+In [29]: Dojo.objects.last().ninjas.all()
+Out[29]: <QuerySet [<Ninja object: Samuel Best >, <Ninja object: Carol Lately >, <Ninja object: Jimmy Butler >]>
+
+In [30]: Dojo.objects.first().desc
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-30-a27af6305174> in <module>
+----> 1 Dojo.objects.first().desc
+
+AttributeError: 'Dojo' object has no attribute 'desc'
+
+In [31]: exit
+(djangoenv)
+Bernard@LAPTOP-1ILQ0B0M MINGW64 ~/Desktop/python_stack/django_ninjas (master)
+$ python manage.py shell
+Python 3.7.0 (v3.7.0:1bf9cc5093, Jun 27 2018, 04:06:47) [MSC v.1914 32 bit (Intel)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.1.1 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from apps.django_ninja.model import *
+---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+<ipython-input-1-40b283aada85> in <module>
+----> 1 from apps.django_ninja.model import *
+
+ModuleNotFoundError: No module named 'apps.django_ninja'
+
+In [2]: from apps.dojo_ninja.model import *
+---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+<ipython-input-2-0db899b0009a> in <module>
+----> 1 from apps.dojo_ninja.model import *
+
+ModuleNotFoundError: No module named 'apps.dojo_ninja'
+
+In [3]: from apps.dojo_ninjas.model import *
+---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+<ipython-input-3-c3b5fbf2eeec> in <module>
+----> 1 from apps.dojo_ninjas.model import *
+
+ModuleNotFoundError: No module named 'apps.dojo_ninjas.model'
+
+In [4]: from apps.dojo_ninjas.models import Dojo
+
+In [5]: from apps.dojo_ninjas.models import Ninja
+
+In [6]: Dojo.objects.all().desc
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-6-d2d65f981511> in <module>
+----> 1 Dojo.objects.all().desc
+
+AttributeError: 'QuerySet' object has no attribute 'desc'
+
+In [7]: Dojo.objects.all().name
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-7-d3a653398a22> in <module>
+----> 1 Dojo.objects.all().name
+
+AttributeError: 'QuerySet' object has no attribute 'name'
+
+In [8]: Dojo.objects.all()
+Out[8]: <QuerySet [<Dojo object: CodingDojo Silicon Valley Mountain View CA >, <Dojo object: CodingDojo Seattle Seattle WA >, <Dojo object: CodingDojo New York New York NY >]>
+
+In [9]: Dojo.objects.first().desc
+Out[9]: 'The best courses in full stack development'
+
+In [10]:
