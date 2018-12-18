@@ -1,0 +1,173 @@
+Bernard@LAPTOP-1ILQ0B0M MINGW64 ~/Desktop/python_stack/django_ninjas (master)
+$ python manage.py makemigrations
+Migrations for 'book_authors':
+  apps\book_authors\migrations\0001_initial.py:
+    - Create model Author
+    - Create model Book
+    - Add field books to author
+(djangoenv)
+Bernard@LAPTOP-1ILQ0B0M MINGW64 ~/Desktop/python_stack/django_ninjas (master)
+$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, book_authors, contenttypes, dojo_ninjas, sessions
+Running migrations:
+  Rendering model states... DONE
+  Applying book_authors.0001_initial... OK
+(djangoenv)
+Bernard@LAPTOP-1ILQ0B0M MINGW64 ~/Desktop/python_stack/django_ninjas (master)
+$ python manage.py shell
+Python 3.7.0 (v3.7.0:1bf9cc5093, Jun 27 2018, 04:06:47) [MSC v.1914 32 bit (Intel)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.1.1 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from apps.book_authors.models import Book
+
+In [2]: from apps.book_authors.models import Author
+
+In [3]: Book.objects.create(name="C sharp", desc="C sharp program")
+Out[3]: <Book object: C sharp C sharp program >
+
+In [4]: Book.objects.create(name="Java", desc=" Java program")
+Out[4]: <Book object: Java  Java program >
+
+In [5]: Book.objects.create(name="Python", desc=" Python program")
+Out[5]: <Book object: Python  Python program >
+
+In [6]: Book.objects.create(name="PHP", desc=" PHP program")
+Out[6]: <Book object: PHP  PHP program >
+
+In [7]: Book.objects.create(name="Puby", desc=" Ruby program")
+Out[7]: <Book object: Puby  Ruby program >
+
+In [8]: Author.objects.create(first_name="Mike")
+Out[8]: <Author object: Mike   >
+
+In [9]: Author.objects.create(first_name="Speros")
+Out[9]: <Author object: Speros   >
+
+In [10]: Author.objects.create(first_name="John")
+Out[10]: <Author object: John   >
+
+In [11]: Author.objects.create(first_name="Jadee")
+Out[11]: <Author object: Jadee   >
+
+In [12]: Author.objects.create(first_name="Jay")
+Out[12]: <Author object: Jay   >
+
+In [13]: bookchange = Book.objects.get(id=5)
+
+In [14]: bookchange.name = "C#"
+
+In [15]: bookchange.save()
+
+In [16]: authorchange = Author.objects.get(id=5)
+
+In [17]: authorchange.first_name = "Ketul
+  File "<ipython-input-17-c21a89001a7c>", line 1
+    authorchange.first_name = "Ketul
+                                    ^
+SyntaxError: EOL while scanning string literal
+
+
+In [18]:
+
+In [18]: authorchange.first_name = "Ketul"
+
+In [19]: authorchange.save()
+
+In [20]: Author1=Author.objects.get(id=1)
+
+In [21]: Author1.books.add(Book.objects.get(id=1))
+
+In [22]: Author1.books.add(Book.objects.get(id=2))
+
+In [23]: Author.objects.get(id=2).books.add(Book.objects.get(id=3)
+    ...: )
+
+In [24]: Author.objects.get(id=2).books.add(Book.objects.get(id=1))
+
+In [25]: Author.objects.get(id=2).books.add(Book.objects.get(id=2))
+
+In [26]: Author.objects.get(id=3).books.add(Book.objects.get(id=1))
+
+In [27]: Author.objects.get(id=3).books.add(Book.objects.get(id=2))
+
+In [28]: Author.objects.get(id=3).books.add(Book.objects.get(id=3))
+
+In [29]: Author.objects.get(id=3).books.add(Book.objects.get(id=4))
+
+In [30]: Author.objects.get(id=3).books.add(Book.objects.get(id=4))
+
+In [31]: Author.objects.get(id=4).books.add(Book.objects.get(id=1))
+
+In [32]: Author.objects.get(id=4).books.add(Book.objects.get(id=2))
+
+In [33]: Author.objects.get(id=4).books.add(Book.objects.get(id=3))
+
+In [34]: Author.objects.get(id=4).books.add(Book.objects.get(id=4))
+
+In [35]: Author.objects.get(id=4).books.add(Book.objects.get(id=5))
+
+In [36]: Book.objects.get(id=3).books
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-36-a1ec10fa875d> in <module>
+----> 1 Book.objects.get(id=3).books
+
+AttributeError: 'Book' object has no attribute 'books'
+
+In [37]: mybook = Book.objects.get(id=3)
+
+In [38]: mybook.authors
+Out[38]: <django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager at 0x63ab090>
+
+In [39]: print(mybook.authors)
+book_authors.Author.None
+
+In [40]: mybook.authors.all()
+Out[40]: <QuerySet [<Author object: Speros   >, <Author object: John   >, <Author object: Jadee   >]>
+
+In [41]: Book.objects.get(id=3).books.all()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-41-b3e39212398c> in <module>
+----> 1 Book.objects.get(id=3).books.all()
+
+AttributeError: 'Book' object has no attribute 'books'
+
+In [42]: Author.objects.get(id=4).books.all
+Out[42]: <bound method BaseManager.all of <django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x01053970>>
+
+In [43]: Author.objects.get(id=4).books.all()
+Out[43]: <QuerySet [<Book object: C sharp C sharp program >, <Book object: Java  Java program >, <Book object: Python  Python program >, <Book object: PHP  PHP program >, <Book object: C#  Ruby program >]>
+
+In [44]: Book.objects.get(id=3).authors.all()
+Out[44]: <QuerySet [<Author object: Speros   >, <Author object: John   >, <Author object: Jadee   >]>
+
+
+In [46]: Book.objects.get(id=3).authors.remove(Author.objects.get(first_name
+    ...:
+    ...: ="John")
+    ...: )
+
+In [47]: Book.objects.get(id=3).authors.all()
+Out[47]: <QuerySet [<Author object: Speros   >, <Author object: Jadee   >]>
+
+In [48]: Author.objects.filter(id=3).books.all()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-48-75555077a568> in <module>
+----> 1 Author.objects.filter(id=3).books.all()
+
+AttributeError: 'QuerySet' object has no attribute 'books'
+
+In [49]:  Author.objects.get(id=4).books.all()
+Out[49]: <QuerySet [<Book object: C sharp C sharp program >, <Book object: Java  Java program >, <Book object: Python  Python program >, <Book object: PHP  PHP program >, <Book object: C#  Ruby program >]>
+
+In [50]:  Author.objects.get(id=3).books.all()
+Out[50]: <QuerySet [<Book object: C sharp C sharp program >, <Book object: Java  Java program >, <Book object: PHP  PHP program >]>
+
+In [51]:  Author.objects.get(id=2).books.all()
+Out[51]: <QuerySet [<Book object: C sharp C sharp program >, <Book object: Java  Java program >, <Book object: Python  Python program >]>
+
+In [52]:
