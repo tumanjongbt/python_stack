@@ -1,0 +1,465 @@
+Bernard@LAPTOP-1ILQ0B0M MINGW64 ~/Desktop/python_stack/django_likes (master)
+$ python manage.py makemigrations
+Migrations for 'likes_books':
+  apps\likes_books\migrations\0001_initial.py:
+    - Create model Book
+    - Create model User
+    - Add field liked_user to book
+    - Add field uploader to book
+(djangoenv)
+Bernard@LAPTOP-1ILQ0B0M MINGW64 ~/Desktop/python_stack/django_likes (master)
+$ python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, likes_books, sessions
+Running migrations:
+  Rendering model states... DONE
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying likes_books.0001_initial... OK
+  Applying sessions.0001_initial... OK
+(djangoenv)
+Bernard@LAPTOP-1ILQ0B0M MINGW64 ~/Desktop/python_stack/django_likes (master)
+$ python manage.py shell
+Python 3.7.0 (v3.7.0:1bf9cc5093, Jun 27 2018, 04:06:47) [MSC v.1914 32 bit (Intel)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.1.1 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from apps.likes_books.model import User
+---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+<ipython-input-1-cf43816cd0be> in <module>
+----> 1 from apps.likes_books.model import User
+
+ModuleNotFoundError: No module named 'apps.likes_books.model'
+
+In [2]: from apps.likes_books.models import User
+
+In [3]: from apps.likes_books.models import Book
+
+In [4]: User.objects.create(first_name="Mike")
+Out[4]: <User object: Mike>
+
+In [5]: User.objects.create(first_name="Speros")
+Out[5]: <User object: Speros>
+
+In [6]: User.objects.create(first_name="John")
+Out[6]: <User object: John>
+
+In [7]: User.objects.create(first_name="Jadee")
+Out[7]: <User object: Jadee>
+
+In [8]: User.objects.get(id=1).uploader.add(Book.objects.create(name="C Sharp Program"))
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-8-4829d861165a> in <module>
+----> 1 User.objects.get(id=1).uploader.add(Book.objects.create(name="C Sharp Program"))
+
+AttributeError: 'User' object has no attribute 'uploader'
+
+In [9]: Book.objects.create(name="Java program", uploader=User.objects.get(id=1))
+Out[9]: ---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\IPython\core\formatters.py in __call__(self, obj)
+    700                 type_pprinters=self.type_printers,
+    701                 deferred_pprinters=self.deferred_printers)
+--> 702             printer.pretty(obj)
+    703             printer.flush()
+    704             return stream.getvalue()
+
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\IPython\lib\pretty.py in pretty(self, obj)
+    400                         if cls is not object \
+    401                                 and callable(cls.__dict__.get('__repr__')):
+--> 402                             return _repr_pprint(obj, self, cycle)
+    403
+    404             return _default_pprint(obj, self, cycle)
+
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\IPython\lib\pretty.py in _repr_pprint(obj, p, cycle)
+    695     """A pprint that just redirects to the normal repr function."""
+    696     # Find newlines and replace them with p.break_()
+--> 697     output = repr(obj)
+    698     for idx,output_line in enumerate(output.splitlines()):
+    699         if idx:
+
+~\Desktop\python_stack\django_likes\apps\likes_books\models.py in __repr__(self)
+     20
+     21     def __repr__(self):
+---> 22         return "<Book object: {}>".format(self.bname)
+
+AttributeError: 'Book' object has no attribute 'bname'
+
+In [10]: Book.objects.create(name="Java program", uploader=User.objects.get(id=1))
+Out[10]: ---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\IPython\core\formatters.py in __call__(self, obj)
+    700                 type_pprinters=self.type_printers,
+    701                 deferred_pprinters=self.deferred_printers)
+--> 702             printer.pretty(obj)
+    703             printer.flush()
+    704             return stream.getvalue()
+
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\IPython\lib\pretty.py in pretty(self, obj)
+    400                         if cls is not object \
+    401                                 and callable(cls.__dict__.get('__repr__')):
+--> 402                             return _repr_pprint(obj, self, cycle)
+    403
+    404             return _default_pprint(obj, self, cycle)
+
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\IPython\lib\pretty.py in _repr_pprint(obj, p, cycle)
+    695     """A pprint that just redirects to the normal repr function."""
+    696     # Find newlines and replace them with p.break_()
+--> 697     output = repr(obj)
+    698     for idx,output_line in enumerate(output.splitlines()):
+    699         if idx:
+
+~\Desktop\python_stack\django_likes\apps\likes_books\models.py in __repr__(self)
+     20
+     21     def __repr__(self):
+---> 22         return "<Book object: {}>".format(self.bname)
+
+AttributeError: 'Book' object has no attribute 'bname'
+
+In [11]: Book.objects.create(name="Java program", uploader=User.objects.get(id=1))
+Out[11]: ---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\IPython\core\formatters.py in __call__(self, obj)
+    700                 type_pprinters=self.type_printers,
+    701                 deferred_pprinters=self.deferred_printers)
+--> 702             printer.pretty(obj)
+    703             printer.flush()
+    704             return stream.getvalue()
+
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\IPython\lib\pretty.py in pretty(self, obj)
+    400                         if cls is not object \
+    401                                 and callable(cls.__dict__.get('__repr__')):
+--> 402                             return _repr_pprint(obj, self, cycle)
+    403
+    404             return _default_pprint(obj, self, cycle)
+
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\IPython\lib\pretty.py in _repr_pprint(obj, p, cycle)
+    695     """A pprint that just redirects to the normal repr function."""
+    696     # Find newlines and replace them with p.break_()
+--> 697     output = repr(obj)
+    698     for idx,output_line in enumerate(output.splitlines()):
+    699         if idx:
+
+~\Desktop\python_stack\django_likes\apps\likes_books\models.py in __repr__(self)
+     20
+     21     # def __repr__(self):
+---> 22     #     return "<Book object: {}>".format(self.name)
+
+AttributeError: 'Book' object has no attribute 'bname'
+
+In [12]: Book.objects.create(name="Java program", uploader=User.objects.get(id=1))
+Out[12]: ---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\IPython\core\formatters.py in __call__(self, obj)
+    700                 type_pprinters=self.type_printers,
+    701                 deferred_pprinters=self.deferred_printers)
+--> 702             printer.pretty(obj)
+    703             printer.flush()
+    704             return stream.getvalue()
+
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\IPython\lib\pretty.py in pretty(self, obj)
+    400                         if cls is not object \
+    401                                 and callable(cls.__dict__.get('__repr__')):
+--> 402                             return _repr_pprint(obj, self, cycle)
+    403
+    404             return _default_pprint(obj, self, cycle)
+
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\IPython\lib\pretty.py in _repr_pprint(obj, p, cycle)
+    695     """A pprint that just redirects to the normal repr function."""
+    696     # Find newlines and replace them with p.break_()
+--> 697     output = repr(obj)
+    698     for idx,output_line in enumerate(output.splitlines()):
+    699         if idx:
+
+~\Desktop\python_stack\django_likes\apps\likes_books\models.py in __repr__(self)
+     20
+     21     # def __repr__(self):
+---> 22     #     return "<Book object: {}>".format(self.name)
+
+AttributeError: 'Book' object has no attribute 'bname'
+
+In [13]: exit
+(djangoenv)
+Bernard@LAPTOP-1ILQ0B0M MINGW64 ~/Desktop/python_stack/django_likes (master)
+$ python manage.py shell
+Python 3.7.0 (v3.7.0:1bf9cc5093, Jun 27 2018, 04:06:47) [MSC v.1914 32 bit (Intel)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.1.1 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from apps.likes_books.models import User
+
+In [2]: from apps.likes_books.models import Book
+
+In [3]: Book.objects.create(name="Java program", uploader=User.objects.get(id=1))
+Out[3]: <Book: Book object>
+
+In [4]: Book.objects.create(name="Python", uploader=User.objects.get(id=1))
+Out[4]: <Book: Book object>
+
+In [5]: Book.objects.first().uploader
+Out[5]: <User object: Mike>
+
+In [6]: User.objects.first().uploaded_books
+Out[6]: <django.db.models.fields.related_descriptors.create_reverse_many_to_one_manager.<locals>.RelatedManager at 0x532c970>
+
+In [7]: User.objects.first().uploaded_books()
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+<ipython-input-7-0f91a6fb7ac1> in <module>
+----> 1 User.objects.first().uploaded_books()
+
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\django\db\models\fields\related_descriptors.py in __call__(self, **kwargs)
+    522             # We use **kwargs rather than a kwarg argument to enforce the
+    523             # `manager='manager_name'` syntax.
+--> 524             manager = getattr(self.model, kwargs.pop('manager'))
+    525             manager_class = create_reverse_many_to_one_manager(manager.__class__, rel)
+    526             return manager_class(self.instance)
+
+KeyError: 'manager'
+
+In [8]: User.objects.first().uploaded_books
+Out[8]: <django.db.models.fields.related_descriptors.create_reverse_many_to_one_manager.<locals>.RelatedManager at 0x5de8830>
+
+In [9]: User.objects.all().uploaded_books
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-9-f78ed56d63f2> in <module>
+----> 1 User.objects.all().uploaded_books
+
+AttributeError: 'QuerySet' object has no attribute 'uploaded_books'
+
+In [10]: Book.objects.create(name="PHP", uploader=User.objects.get(id=2))
+Out[10]: <Book: Book object>
+
+In [11]: Book.objects.create(name="Ruby", uploader=User.objects.get(id=2))
+Out[11]: <Book: Book object>
+
+In [12]: Book.objects.create(name="C Sharp", uploader=User.objects.get(id=3))
+Out[12]: <Book: Book object>
+
+In [13]: Book.objects.create(name="HTML", uploader=User.objects.get(id=3))
+Out[13]: <Book: Book object>
+
+In [14]: Book.objects.all().uploader
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-14-971f0c30e965> in <module>
+----> 1 Book.objects.all().uploader
+
+AttributeError: 'QuerySet' object has no attribute 'uploader'
+
+In [15]: Book.objects.last().uploader
+Out[15]: <User object: John>
+
+In [16]: User.objects.get(id=1).liked_user.add(Book.objects.get(id=1)
+    ...: )
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-16-b1c659fb0cf2> in <module>
+----> 1 User.objects.get(id=1).liked_user.add(Book.objects.get(id=1)
+      2 )
+
+AttributeError: 'User' object has no attribute 'liked_user'
+
+In [17]: User.objects.get(id=1).liked_books.add(Book.objects.get(id=1))
+
+In [18]: User.objects.get(id=1).liked_books.add(Book.objects.get(id=6))
+
+In [19]: User.objects.get(id=2).liked_books.add(Book.objects.get(id=1))
+
+In [20]: User.objects.get(id=2).liked_books.add(Book.objects.get(id=3))
+
+In [21]: User.objects.get(id=1).liked_books.add(Book.objects.get(id__range=(1,6)))
+---------------------------------------------------------------------------
+MultipleObjectsReturned                   Traceback (most recent call last)
+<ipython-input-21-29aaae6f823a> in <module>
+----> 1 User.objects.get(id=1).liked_books.add(Book.objects.get(id__range=(1,6)))
+
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\django\db\models\manager.py in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\django\db\models\query.py in get(self, *args, **kwargs)
+    387         raise self.model.MultipleObjectsReturned(
+    388             "get() returned more than one %s -- it returned %s!" %
+--> 389             (self.model._meta.object_name, num)
+    390         )
+    391
+
+MultipleObjectsReturned: get() returned more than one Book -- it returned 6!
+
+In [22]: User.objects.get(id=3).liked_books.add(Book.objects.get(id=1))
+
+In [23]: User.objects.get(id=3).liked_books.add(Book.objects.get(id=2))
+
+In [24]: User.objects.get(id=3).liked_books.add(Book.objects.get(id=3))
+
+In [25]: User.objects.get(id=3).liked_books.add(Book.objects.get(id=4))
+
+In [26]: User.objects.get(id=3).liked_books.add(Book.objects.get(id=5))
+
+In [27]: User.objects.get(id=3).liked_books.add(Book.objects.get(id=6))
+
+In [28]: Book.objects.first().liked_user
+Out[28]: <django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager at 0xa8d50b0>
+
+In [29]: Book.objects.first().liked_user()
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+<ipython-input-29-945e13ad3c37> in <module>
+----> 1 Book.objects.first().liked_user()
+
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\django\db\models\fields\related_descriptors.py in __call__(self, **kwargs)
+    793             # We use **kwargs rather than a kwarg argument to enforce the
+    794             # `manager='manager_name'` syntax.
+--> 795             manager = getattr(self.model, kwargs.pop('manager'))
+    796             manager_class = create_forward_many_to_many_manager(manager.__class__, rel, reverse)
+    797             return manager_class(instance=self.instance)
+
+KeyError: 'manager'
+
+In [30]: Book.objects.first().liked_books
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-30-af88b965d809> in <module>
+----> 1 Book.objects.first().liked_books
+
+AttributeError: 'Book' object has no attribute 'liked_books'
+
+In [31]: Book.objects.first()
+Out[31]: <Book: Book object>
+
+In [32]: Book.objects.first().liked_user
+Out[32]: <django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager at 0xa8ee2b0>
+
+In [33]: likes = Book.objects.first().liked_user
+
+In [34]: print(likes)
+likes_books.User.None
+
+In [35]: Book.objects.filter(id=1).liked_user
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-35-3efb80b8a57c> in <module>
+----> 1 Book.objects.filter(id=1).liked_user
+
+AttributeError: 'QuerySet' object has no attribute 'liked_user'
+
+In [36]: Book.objects.all()
+Out[36]: <QuerySet [<Book: Book object>, <Book: Book object>, <Book: Book object>, <Book: Book object>, <Book: Book object>, <Book: Book object>, <Book: Book object>, <Book: Book object>, <Book: Book object>, <Book: Book object>]>
+
+In [37]: exit
+(djangoenv)
+Bernard@LAPTOP-1ILQ0B0M MINGW64 ~/Desktop/python_stack/django_likes (master)
+$ python manage.py shell
+Python 3.7.0 (v3.7.0:1bf9cc5093, Jun 27 2018, 04:06:47) [MSC v.1914 32 bit (Intel)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.1.1 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from apps.likes_books.models import Book
+
+In [2]: from apps.likes_books.models import User
+
+In [3]: from apps.likes_books.models import *
+
+In [4]: Book.objects.first().liked_user
+Out[4]: <django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager at 0x51b0670>
+
+In [5]: likes = Book.objects.first().liked_user
+
+In [6]: print(likes)
+likes_books.User.None
+
+In [7]: User.objects.first().liked_books
+Out[7]: <django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager at 0x5646a10>
+
+In [8]: User.objects.first().liked_books()
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+<ipython-input-8-7dcec0b25746> in <module>
+----> 1 User.objects.first().liked_books()
+
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\django\db\models\fields\related_descriptors.py in __call__(self, **kwargs)
+    793             # We use **kwargs rather than a kwarg argument to enforce the
+    794             # `manager='manager_name'` syntax.
+--> 795             manager = getattr(self.model, kwargs.pop('manager'))
+    796             manager_class = create_forward_many_to_many_manager(manager.__class__, rel, reverse)
+    797             return manager_class(instance=self.instance)
+
+KeyError: 'manager'
+
+In [9]: print(likes.liked_user)
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-9-1cc217b4e51d> in <module>
+----> 1 print(likes.liked_user)
+
+AttributeError: 'ManyRelatedManager' object has no attribute 'liked_user'
+
+In [10]: likes = Book.objects.first().liked_user
+
+In [11]: print(likes.first_name)
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-11-2620cd68ff27> in <module>
+----> 1 print(likes.first_name)
+
+AttributeError: 'ManyRelatedManager' object has no attribute 'first_name'
+
+In [12]: Book.objects.get(id=1).liked_books()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-12-46eda2c8f07a> in <module>
+----> 1 Book.objects.get(id=1).liked_books()
+
+AttributeError: 'Book' object has no attribute 'liked_books'
+
+In [13]: Book.objects.get(id=1).liked_books.all()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-13-3a6d6dea2e6a> in <module>
+----> 1 Book.objects.get(id=1).liked_books.all()
+
+AttributeError: 'Book' object has no attribute 'liked_books'
+
+In [14]: User.objects.first().liked_books
+Out[14]: <django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager at 0x78db990>
+
+In [15]: User.objects.first().liked_books.get()
+---------------------------------------------------------------------------
+MultipleObjectsReturned                   Traceback (most recent call last)
+<ipython-input-15-052d6511e961> in <module>
+----> 1 User.objects.first().liked_books.get()
+
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\django\db\models\manager.py in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+~\Desktop\python_stack\myEnvironments\djangoenv\lib\site-packages\django\db\models\query.py in get(self, *args, **kwargs)
+    387         raise self.model.MultipleObjectsReturned(
+    388             "get() returned more than one %s -- it returned %s!" %
+--> 389             (self.model._meta.object_name, num)
+    390         )
+    391
+
+MultipleObjectsReturned: get() returned more than one Book -- it returned 2!
+
+In [16]:

@@ -23,4 +23,5 @@ class Author(models.Model):
     def __repr__(self):
         return "<Author object: {} {} {} >".format(self.first_name, self.last_name, self.email)
 
+# this_book.publishers.add(this_publisher)
 
