@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" 
+   href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <link rel="stylesheet" type="text/css" 
+   href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Add a new user</h1>
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <div class="form-container">
+      <h2>Register</h2>
+      <form action="{% url 'users:create' %}" method="post">
+        {% csrf_token %}
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" placeholder="Enter First Name">
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" placeholder="Enter last name">
+        <label for="username">Username:</label>
+        <input type="text" name="username" placeholder="Enter username">
+        <label for="email">Email:</label>
+        <input type="text" name="email" placeholder="Enter valid email">
+        <label for="password">Password:</label>
+        <input type="password" name="password" placeholder="Enter password">
+        <input type="submit" value="Register">
+      </form>
+    </div>
+    <div class="form-container">
+      <h2>Login</h2>
+      <form action="{% url 'users:login' %}" method="post">
+        {% csrf_token %}
+        <label for="username">Username:</label>
+        <input type="text" name="username" placeholder="Enter username">
+        <label for="password">Password:</label>
+        <input type="password" name="password" placeholder="Enter password">
+        <input type="submit" value="Login">
+      </form>
+    </div>
+    <div class="container">
+        <a href="{% url 'users:index' %}" class="button">Go Back</a>
+    </div>
+  </div>
+</body>
+</html>

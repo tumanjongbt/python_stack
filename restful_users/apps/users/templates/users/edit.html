@@ -1,0 +1,34 @@
+{% extends './layout.html' %}
+{% block body %}
+  <h1>Edit User {{ user_info.id}}</h1>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <form action="{% url 'users:update' user.id %}" method="post">
+    {% csrf_token %}
+    <label for="first_name">First Name:</label>
+    <input type="text" name="first_name" placeholder="Change Request" value="{{ user.first_name }}">
+
+    <label for="last_name">Last Name:</label>
+    <input type="text" name="last_name" placeholder="Change Request" value="{{ user.last_name }}">
+
+    <label for="email">Email:</label>
+    <input type="text" name="email" placeholder="Change Request" value="{{ user.email }}">
+
+    <label for="username">Username:</label>
+    <input type="text" name="username" placeholder="Change Request" value="{{ user.username }}">
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" placeholder="Change Request" value="{{ user.pw_hash }}">
+
+    <input type="submit" value="Update">
+  </form>
+  <div class="container">
+    <a href="{% url 'users:show' user.id %}" class="button">Show</a>
+    <a href="{% url 'users:index' %}" class="button">Go Back</a>
+  </div>
+{% endblock %}

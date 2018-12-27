@@ -1,0 +1,21 @@
+{% extends './layout.html' %}
+{% block title %} {{ user.username }} {% endblock %}
+{% block body %}
+<h1>User ID:{{ user.id }}</h1>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<p>Full Name: {{ user.first_name}} {{ user.last_name}} </p>
+<p>Email: {{ user.email}}</p>
+<p>Created at: {{ user.created_at }}</p>
+<a href="{% url 'users:edit' user.id %}" class="button">Edit</a>
+<form action="{% url 'users:delete' user.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete">
+</form>
+
+{% endblock %}
