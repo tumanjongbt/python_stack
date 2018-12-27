@@ -1,0 +1,19 @@
+{% extends './layout.html' %}
+{% block title %} Delete a course {% endblock %}
+{% block body %}
+	<h3>Are you sure you want to delete the following course?</h3>
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+	<p> Name: {{ course.name}}</p>
+	<p> Description: {{ course.description}}</p>
+	<a href="{% url 'courses:index' %}" class="button">No</a>
+	<form action="{% url 'courses:delete' course.id %}" method="post">
+		{% csrf_token %}
+		<input type="submit" class="button danger" value="Yes! I want to delete this">
+	</form>
+{% endblock %}
