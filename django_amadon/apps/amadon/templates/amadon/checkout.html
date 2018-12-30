@@ -1,0 +1,8 @@
+{% extends './layout.html' %}
+{% block title %} Amadon Checkout {% endblock %}
+{% block body %}
+    <h3>Thank you for your business!</h3>
+    <p>We charged your credit card for $ {{ request.session.purchase_prize }}.</p>
+    <p>You have ordered {{ request.session.total_ordered }} items so far and spent ${{ request.session.total_spent }} with Amadon.com!</p>
+    <a href="{% url 'amadon:index' %}" class="button">Go Back</a>   
+{% endblock %}
