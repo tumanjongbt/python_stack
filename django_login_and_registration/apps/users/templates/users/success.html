@@ -1,0 +1,8 @@
+{% extends './layout.html' %}
+{% block title %} Login & Reg | Success {% endblock %}
+{% block body %}
+    <h3>Success!  Welcome, {{ user_info.first_name }}!</h3>
+    <p>{{ request.session.message }}</p>
+    <a href="{% url 'users:new' %}" class="button">Go Back</a><a href="{% url 'users:logout' %}" class="button">Logout</a>
+   
+{% endblock %}
