@@ -1,0 +1,13 @@
+.form-container{
+	width: 450px;
+	display: inline-block;
+	vertical-align: top;
+}
+#show_group{
+	border: 1px solid black;
+	 
+}
+.horizontal-form{
+	margin: 100px;
+	padding: 0px;
+}

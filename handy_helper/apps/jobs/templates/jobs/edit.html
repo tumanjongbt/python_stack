@@ -1,0 +1,50 @@
+{% extends './layout.html' %}
+
+{% block head %}
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'users/css/main.css' %}">
+{% endblock %}
+
+{% block title %} User Quotes {% endblock %}
+
+{% block body %}
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Edit Your Job Posting</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="{% url 'jobs:dashboard' %}">Back</a></li>
+				<li><a href="{% url 'users:logout' %}">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	{% if messages %}
+	<ul class="messages">
+		{% for message in messages %}
+		<li> {{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+		<form class="form-horizontal" action="{% url 'jobs:update' job.id %}" method="post">
+			{% csrf_token%}
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="title">Title</label>
+				<input type="text" name="title" value="{{ job.title }}">
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="descrption">Description</label>
+				<textarea name="description" id="" cols="30" rows="10">{{ job.description }}</textarea>			
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="location">Location</label>
+				<input type="text" name="location" value="{{job.location}}">		
+			</div>
+			<div class="form-group">
+			    <button type="submit" class="btn btn-default">Submit</button>
+				{% comment %} <input type="submit" value="Submit">		 {% endcomment %}
+			</div>
+		</form>
+	
+{% endblock %}

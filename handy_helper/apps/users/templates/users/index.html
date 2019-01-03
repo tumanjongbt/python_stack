@@ -1,0 +1,57 @@
+{% extends './layout.html' %}
+
+{% block head %}
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'users/css/main.css' %}">
+{% endblock %}
+
+{% block title %} A Web Page {% endblock %}
+
+{% block body %} 
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Welcome to Handy Helper</a>
+            </div>
+        </div>
+    </nav>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <div class="form-container"> 
+        <h3>Register</h3>
+        <form class="inline" action="{% url 'users:create' %}" method='post'>
+            {% csrf_token %}           
+            <label for="first_name">First Name:</label>
+            <input type='text' placeholder="Enter First Name" name='first_name'>            
+            <label for="last_name">Last Name:</label>
+            <input type='text' placeholder="Enter Last Name" name='last_name'>
+            <label for="email">Email:</label>
+            <input type='text' placeholder="Enter email" name='email'>
+            <label for="password">Password:</label>
+            <input type='password' placeholder="Enter Password" name='password'>      
+            <label for="confirm_password">Confirm Password:</label>
+            <input type='password' placeholder="Confirm Password" name='confirm_password'>
+            <input type="hidden" name="action" value="registered">   
+            <input type='submit' value='Register'>
+        </form>
+    </div>
+    
+    <div class="form-container">   
+        <h3>Login</h3>     
+        <form class="inline" action="{% url 'users:login' %}" method='post'>
+            {% csrf_token %}
+            <label for="email">Email:</label>
+            <input type='text' placeholder="Enter email" name='email'>
+            <label for="password">Password:</label>
+            <input type='password' placeholder="Enter Password" name='password'>
+            <input type="hidden" name="action" value="logged in">
+            <input type='submit' value='Login'> 
+        </form>
+    </div>
+
+{% endblock %}
